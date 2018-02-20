@@ -3,7 +3,7 @@ require_relative "piece"
 class NullPiece < Piece
 
   def initialize
-    @name = "Null"
+    @name = " "
   end
 
 end

@@ -12,10 +12,10 @@ class Board
   end
 
   def populate_board
-    populate_first_last(0, "white")
+    populate_last("white")
     populate_pawns(1, "white")
     populate_pawns(6, "black")
-    populate_first_last(7, "black")
+    populate_first("black")
     populate_nullpieces
   end
 
@@ -24,26 +24,48 @@ class Board
     @display.display
   end
 
-  def populate_first_last(row, color)
+  def populate_last(color)
     8.times do |pos|
       case pos
       when 0 , 7
-        @board[row][pos] = Piece.new("Rook", color)
+        @board[7][pos] = Piece.new("♖", color)
       when 1 , 6
-        @board[row][pos] = Piece.new("Knight", color)
+        @board[7][pos] = Piece.new("♘", color)
       when 2 , 5
-        @board[row][pos] = Piece.new("Bishop", color)
+        @board[7][pos] = Piece.new("♗", color)
       when 3
-        @board[row][pos] = Piece.new("King", color)
+        @board[7][pos] = Piece.new("♕", color)
       when 4
-        @board[row][pos] = Piece.new("Queen", color)
+        @board[7][pos] = Piece.new("♔", color)
+      end
+    end
+  end
+
+  def populate_first(color)
+    8.times do |pos|
+      case pos
+      when 0 , 7
+        @board[0][pos] = Piece.new("♜", color)
+      when 1 , 6
+        @board[0][pos] = Piece.new("♞", color)
+      when 2 , 5
+        @board[0][pos] = Piece.new("♝", color)
+      when 3
+        @board[0][pos] = Piece.new("♛", color)
+      when 4
+        @board[0][pos] = Piece.new("♚", color)
       end
     end
   end
 
   def populate_pawns(row, color)
+    if row == 1
+      pawn = "♟"
+    else
+      pawn = "♙"
+    end
     8.times do |pos|
-      @board[row][pos] = Piece.new("Pawn", color)
+      @board[row][pos] = Piece.new(pawn, color)
     end
   end
 

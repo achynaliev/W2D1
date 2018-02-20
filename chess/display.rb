@@ -15,14 +15,22 @@ class Display
     8.times do |row|
       8.times do |col|
         if @cursor.cursor_pos == [row, col]
-          print "  #{@board.board[row][col].name}  ".red
+          if row % 2 == 0 && col % 2 == 0 || (row % 2 == 1 && col % 2 == 1)
+            print " #{@board.board[row][col].name} ".colorize(:color => :blue, :background => :red)
+          else
+            print " #{@board.board[row][col].name} ".colorize(:color => :blue, :background => :red)
+          end
         else
-          print "  #{@board.board[row][col].name}  "
+          if (row % 2 == 0 && col % 2 == 0) || (row % 2 == 1 && col % 2 == 1)
+            print " #{@board.board[row][col].name} ".colorize(:color => :blue, :background => :white)
+          else
+            print " #{@board.board[row][col].name} ".colorize(:color => :blue, :background => :yellow)
+          end
         end
       end
       puts
-      puts
     end
+
     @cursor.get_input
     display
   end
